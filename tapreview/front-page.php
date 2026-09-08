@@ -1,7 +1,7 @@
 <?php
-/* Front page: render the content of the static page set in Settings → Reading.
-   If no static front page is set, fall back to the content of the latest post.
-*/
+/**
+ * Front page: render the content of the static page set in Settings → Reading.
+ */
 get_header();
 ?>
 <main id="site-content" role="main">
@@ -18,7 +18,7 @@ if ( $front_id ) {
             the_content();
         endwhile;
     else :
-        echo '<p>' . esc_html__( 'No front page set. Create a page and assign it as the static front page in Settings → Reading.', 'tapreview-wp' ) . '</p>';
+        echo '<p>' . esc_html__( 'Nessuna pagina impostata come Home. Crea una pagina e impostala come Front Page in Impostazioni → Lettura.', 'tapreview-wp' ) . '</p>';
     endif;
 }
 ?>
