@@ -1,0 +1,17 @@
+/*
+Theme Name: TapReview WP (editable)
+Theme URI: https://tapreview.example
+Author: TapReview
+Description: WordPress theme built from the TapReview landing page export. Editable with the block editor; easy to add pages, images, and blocks. All changes are on branch feature/wp-theme-editable.
+Version: 1.0.0
+Requires at least: 6.0
+Requires PHP: 7.4
+Text Domain: tapreview-wp
+*/
+
+/* Minimal base to allow Gutenberg styling; the heavy styles are loaded from the repo's main stylesheet to preserve the original look. */
+
+@import url("https://raw.githubusercontent.com/ferielde077-ui/emergent-misto-claude/main/style.css");
+
+/* Small overrides to make WP editor output consistent */
+body{font-family:inherit}
