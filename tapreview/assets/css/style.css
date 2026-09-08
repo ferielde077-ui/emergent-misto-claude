@@ -1,0 +1,17 @@
+/* Auto-generated minimal stylesheet for the local theme assets.
+   The full original stylesheet is large; for now use the theme's main style.css
+   and this file can host small overrides if needed.
+*/
+
+/* Ensure images don't overflow in blocks */
+.wp-block-image img, .product-gallery-thumb img { max-width: 100%; height: auto; display: block; }
+
+/* Basic layout wrappers used by templates */
+.wrap { max-width: 1200px; margin: 0 auto; padding: 0 1rem; }
+.site-header { position: fixed; top: 0; left: 0; right: 0; z-index: 50; background: rgba(13,13,15,0.75); backdrop-filter: blur(6px); }
+.site-footer .wrap { padding: 2rem 0; }
+
+/* Product grid fallback styles */
+.product-gallery-grid { display:grid; grid-template-columns:1fr; gap:1rem; }
+@media (min-width:640px){ .product-gallery-grid{ grid-template-columns:repeat(2,1fr); } }
+@media (min-width:1024px){ .product-gallery-grid{ grid-template-columns:repeat(3,1fr); } }

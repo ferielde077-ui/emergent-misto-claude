@@ -89,7 +89,7 @@
 
 <?php get_template_part( 'footer' ); ?>
 
-<script src="<?php echo esc_url( tapreview_asset_url( 'script.js' ) ); ?>"></script>
+<script src="<?php echo esc_url( tapreview_asset_url( 'assets/js/script.js' ) ); ?>"></script>
 <?php wp_footer(); ?>
 </body>
 </html>

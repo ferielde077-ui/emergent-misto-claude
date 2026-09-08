@@ -84,20 +84,27 @@ function tapreview_customize_register( $wp_customize ) {
 add_action( 'customize_register', 'tapreview_customize_register' );
 
 function tapreview_scripts() {
-    // Enqueue the main stylesheet from this theme (style.css)
+    // Enqueue the theme stylesheet (style.css)
     wp_enqueue_style( 'tapreview-style', get_stylesheet_uri(), array(), filemtime( get_stylesheet_directory() . '/style.css' ) );
 
-    // Legacy: also enqueue the original site's CSS and JS from the repo raw URLs so the initial look matches the static page
-    // (You can remove these and copy assets locally for improved performance.)
-    wp_enqueue_style( 'tapreview-legacy', 'https://raw.githubusercontent.com/ferielde077-ui/emergent-misto-claude/main/style.css', array(), null );
-    wp_enqueue_script( 'tapreview-legacy-js', 'https://raw.githubusercontent.com/ferielde077-ui/emergent-misto-claude/main/script.js', array(), null, true );
+    // Enqueue the original site's stylesheet locally if present in the theme assets
+    if ( file_exists( get_stylesheet_directory() . '/assets/css/style.css' ) ) {
+        wp_enqueue_style( 'tapreview-legacy', get_stylesheet_directory_uri() . '/assets/css/style.css', array(), filemtime( get_stylesheet_directory() . '/assets/css/style.css' ) );
+    }
+
+    // Enqueue the main script locally if present
+    if ( file_exists( get_stylesheet_directory() . '/assets/js/script.js' ) ) {
+        wp_enqueue_script( 'tapreview-main', get_stylesheet_directory_uri() . '/assets/js/script.js', array(), filemtime( get_stylesheet_directory() . '/assets/js/script.js' ), true );
+    }
 
     // Our small theme script for hero auto-scroll
-    wp_enqueue_script( 'tapreview-autoscroll', get_stylesheet_directory_uri() . '/assets/js/auto-scroll.js', array(), filemtime( get_stylesheet_directory() . '/assets/js/auto-scroll.js' ), true );
+    if ( file_exists( get_stylesheet_directory() . '/assets/js/auto-scroll.js' ) ) {
+        wp_enqueue_script( 'tapreview-autoscroll', get_stylesheet_directory_uri() . '/assets/js/auto-scroll.js', array(), filemtime( get_stylesheet_directory() . '/assets/js/auto-scroll.js' ), true );
 
-    // Pass the delay from the customizer to the script (seconds)
-    $delay = absint( get_theme_mod( 'tapreview_hero_autoscroll_delay', 0 ) );
-    wp_localize_script( 'tapreview-autoscroll', 'tapreviewAutoScroll', array( 'delay' => $delay ) );
+        // Pass the delay from the customizer to the script (seconds)
+        $delay = absint( get_theme_mod( 'tapreview_hero_autoscroll_delay', 0 ) );
+        wp_localize_script( 'tapreview-autoscroll', 'tapreviewAutoScroll', array( 'delay' => $delay ) );
+    }
 }
 add_action( 'wp_enqueue_scripts', 'tapreview_scripts' );
 
